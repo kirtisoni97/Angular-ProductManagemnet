@@ -1,0 +1,63 @@
+<mat-toolbar class="header-toolbar">
+
+  <div class="social-icons">
+    <button mat-icon-button>
+      <mat-icon fontSet="fa" fontIcon="fa-facebook-f"></mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon fontSet="fa" fontIcon="fa-linkedin-in"></mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon fontSet="fa" fontIcon="fa-twitter"></mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon fontSet="fa" fontIcon="fa-envelope"></mat-icon>
+    </button>
+  </div>
+
+
+  <div class="nav-links">
+    <a>Introduce</a>
+    <a>Partner incentives</a>
+    <a>Promotion</a>
+    <a>Contact</a>
+    <a>Frequently asked questions</a>
+  </div>
+
+  <div class="search-wrapper">
+    <div class="search-box"  *ngIf="showFooter">
+ <input
+  placeholder="What are you looking for?"
+  [(ngModel)]="searchText"
+  (input)="onSearch()"
+/>
+<select [(ngModel)]="selectedCategory" (change)="onCategoryChange()">
+    <option value="" disabled selected hidden>
+    Category
+  </option>
+
+        <option  value="watch">Watch</option>
+        <option  value="glasses">Glasses</option>
+        <option  value="technology">Technology</option>
+        <option  value="cosmetic">Cosmetic</option>
+        <option  value="food">Food</option>
+      </select>
+      <button class="search-btn" (click)="onSearch()">Search</button>
+    </div>
+   
+    <button mat-icon-button *ngIf="!showFooter" (click)="gotoList()">
+      <mat-icon>list</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon>favorite_border</mat-icon>
+    </button>
+
+ 
+  <button mat-icon-button
+        [matBadge]="cartCount"
+        matBadgeColor="warn" (click)="goToCart()">
+  <mat-icon>shopping_cart</mat-icon>
+</button>
+
+  </div>
+</mat-toolbar>
