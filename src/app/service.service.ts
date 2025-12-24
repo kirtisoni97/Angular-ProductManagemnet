@@ -10,15 +10,394 @@ export class ServiceService {
 
   constructor(private http:HttpClient) { }
 
-  apiURL='http://localhost:3000/products'
+  products= [
+    {
+      "id": "1",
+      "category": "technology",
+      "name": "Gaming Laptop",
+      "price": 55000,
+      "description": "High performance laptop with RTX 3060 GPU, 16GB RAM, suitable for programming and gaming.",
+      "brand": "Dell"
+    },
+    {
+      "id": "2",
+      "category": "technology",
+      "name": "Android Smartphone",
+      "price": 25000,
+      "description": "64MP camera, 5000mAh battery, 120Hz display for smooth gaming and streaming.",
+      "brand": "Samsung"
+    },
+    {
+      "id": "3",
+      "category": "technology",
+      "name": "Wireless Headphones",
+      "price": 1999,
+      "description": "Bluetooth 5.0, 30hr battery, active noise cancellation, IPX4 water resistant.",
+      "brand": "Sony"
+    },
+    {
+      "id": "4",
+      "category": "technology",
+      "name": "Tablet Pro",
+      "price": 32000,
+      "description": "12.4-inch display, stylus support, 256GB storage for productivity and entertainment.",
+      "brand": "Apple"
+    },
+    {
+      "id": "5",
+      "category": "food",
+      "name": "Premium Cashews",
+      "price": 450,
+      "description": "500g pack of roasted cashews with sea salt, sourced from Kerala farms.",
+      "brand": "Happilo"
+    },
+    {
+      "id": "6",
+      "category": "food",
+      "name": "Organic Honey",
+      "price": 299,
+      "description": "Pure Himalayan multifloral honey, 500g jar, raw and unprocessed.",
+      "brand": "Saffola"
+    },
+    {
+      "id": "7",
+      "category": "food",
+      "name": "Dark Chocolate",
+      "price": 180,
+      "description": "70% cocoa dark chocolate bar, 100g, no added sugar, vegan friendly.",
+      "brand": "Lindt"
+    },
+    {
+      "id": "8",
+      "category": "cosmetic",
+      "name": "Hydrating Face Cream",
+      "price": 599,
+      "description": "50ml anti-aging cream with hyaluronic acid and vitamin C for daily use.",
+      "brand": "Lakme"
+    },
+    {
+      "id": "9",
+      "category": "cosmetic",
+      "name": "Lipstick Matte",
+      "price": 450,
+      "description": "Long-lasting matte lipstick, 4.2g, 12-hour wear, available in 10 shades.",
+      "brand": "Maybelline"
+    },
+    {
+      "id": "10",
+      "category": "cosmetic",
+      "name": "Sunscreen SPF 50",
+      "price": 399,
+      "description": "Broad spectrum UVA/UVB protection, non-greasy, 50ml pump bottle.",
+      "brand": "Neutrogena"
+    },
+    {
+      "id": "11",
+      "category": "cosmetic",
+      "name": "Kajal Waterproof",
+      "price": 250,
+      "description": "Smudge-proof kajal pencil, 1g, 12-hour stay, easy glide formula.",
+      "brand": "Lakme"
+    },
+    {
+      "id": "12",
+      "category": "glasses",
+      "name": "Aviator Sunglasses",
+      "price": 1599,
+      "description": "Polarized UV400 lenses, metal frame, suitable for men and women.",
+      "brand": "Ray-Ban"
+    },
+    {
+      "id": "13",
+      "category": "glasses",
+      "name": "Reading Glasses",
+      "price": 499,
+      "description": "+1.5 to +3.0 power options, anti-scratch lenses, lightweight TR90 frame.",
+      "brand": "Fastrack"
+    },
+    {
+      "id": "14",
+      "category": "glasses",
+      "name": "Blue Light Glasses",
+      "price": 899,
+      "description": "Anti-glare computer glasses, 100% blue light blocking, clear vision.",
+      "brand": "Vincent Chase"
+    },
+    {
+      "id": "15",
+      "category": "watch",
+      "name": "Fitness Smart Watch",
+      "price": 3499,
+      "description": "Heart rate, SpO2, 100+ sports modes, 7-day battery, 1.69-inch display.",
+      "brand": "Noise"
+    },
+    {
+      "id": "16",
+      "category": "watch",
+      "name": "Analog Wrist Watch",
+      "price": 2500,
+      "description": "Stainless steel case, sapphire crystal, water resistant 50m, leather strap.",
+      "brand": "Titan"
+    },
+    {
+      "id": "17",
+      "category": "watch",
+      "name": "Sports Chronograph",
+      "price": 4200,
+      "description": "Chronograph function, tachymeter bezel, rubber strap, 100m water resistance.",
+      "brand": "Casio"
+    },
+    {
+      "id": "5",
+      "category": "food",
+      "name": "Premium Cashews",
+      "price": 450,
+      "description": "500g pack of roasted cashews with sea salt, sourced from Kerala farms.",
+      "brand": "Happilo"
+    },
+    {
+      "id": "4",
+      "category": "technology",
+      "name": "Tablet Pro",
+      "price": 32000,
+      "description": "12.4-inch display, stylus support, 256GB storage for productivity and entertainment.",
+      "brand": "Apple"
+    },
+    {
+      "id": "5",
+      "category": "food",
+      "name": "Premium Cashews",
+      "price": 450,
+      "description": "500g pack of roasted cashews with sea salt, sourced from Kerala farms.",
+      "brand": "Happilo"
+    },
+    {
+      "id": "3",
+      "category": "technology",
+      "name": "Wireless Headphones",
+      "price": 1999,
+      "description": "Bluetooth 5.0, 30hr battery, active noise cancellation, IPX4 water resistant.",
+      "brand": "Sony"
+    },
+    {
+      "id": "4",
+      "category": "technology",
+      "name": "Tablet Pro",
+      "price": 32000,
+      "description": "12.4-inch display, stylus support, 256GB storage for productivity and entertainment.",
+      "brand": "Apple"
+    },
+    {
+      "id": "10",
+      "category": "cosmetic",
+      "name": "Sunscreen SPF 50",
+      "price": 399,
+      "description": "Broad spectrum UVA/UVB protection, non-greasy, 50ml pump bottle.",
+      "brand": "Neutrogena"
+    },
+    {
+      "id": "3",
+      "category": "technology",
+      "name": "Wireless Headphones",
+      "price": 1999,
+      "description": "Bluetooth 5.0, 30hr battery, active noise cancellation, IPX4 water resistant.",
+      "brand": "Sony"
+    },
+    {
+      "id": "3",
+      "category": "technology",
+      "name": "Wireless Headphones",
+      "price": 1999,
+      "description": "Bluetooth 5.0, 30hr battery, active noise cancellation, IPX4 water resistant.",
+      "brand": "Sony"
+    },
+    {
+      "id": "4",
+      "category": "technology",
+      "name": "Tablet Pro",
+      "price": 32000,
+      "description": "12.4-inch display, stylus support, 256GB storage for productivity and entertainment.",
+      "brand": "Apple"
+    },
+    {
+      "id": "5",
+      "category": "food",
+      "name": "Premium Cashews",
+      "price": 450,
+      "description": "500g pack of roasted cashews with sea salt, sourced from Kerala farms.",
+      "brand": "Happilo"
+    },
+    {
+      "id": "10",
+      "category": "cosmetic",
+      "name": "Sunscreen SPF 50",
+      "price": 399,
+      "description": "Broad spectrum UVA/UVB protection, non-greasy, 50ml pump bottle.",
+      "brand": "Neutrogena"
+    },
+    {
+      "id": "9",
+      "category": "cosmetic",
+      "name": "Lipstick Matte",
+      "price": 450,
+      "description": "Long-lasting matte lipstick, 4.2g, 12-hour wear, available in 10 shades.",
+      "brand": "Maybelline"
+    },
+    {
+      "id": "10",
+      "category": "cosmetic",
+      "name": "Sunscreen SPF 50",
+      "price": 399,
+      "description": "Broad spectrum UVA/UVB protection, non-greasy, 50ml pump bottle.",
+      "brand": "Neutrogena"
+    },
+    {
+      "id": "11",
+      "category": "cosmetic",
+      "name": "Kajal Waterproof",
+      "price": 250,
+      "description": "Smudge-proof kajal pencil, 1g, 12-hour stay, easy glide formula.",
+      "brand": "Lakme"
+    },
+    {
+      "id": "9",
+      "category": "cosmetic",
+      "name": "Lipstick Matte",
+      "price": 450,
+      "description": "Long-lasting matte lipstick, 4.2g, 12-hour wear, available in 10 shades.",
+      "brand": "Maybelline"
+    },
+    {
+      "id": "10",
+      "category": "cosmetic",
+      "name": "Sunscreen SPF 50",
+      "price": 399,
+      "description": "Broad spectrum UVA/UVB protection, non-greasy, 50ml pump bottle.",
+      "brand": "Neutrogena"
+    },
+    {
+      "id": "1",
+      "category": "technology",
+      "name": "Gaming Laptop",
+      "price": 55000,
+      "description": "High performance laptop with RTX 3060 GPU, 16GB RAM, suitable for programming and gaming.",
+      "brand": "Dell"
+    },
+    {
+      "id": "2",
+      "category": "technology",
+      "name": "Android Smartphone",
+      "price": 25000,
+      "description": "64MP camera, 5000mAh battery, 120Hz display for smooth gaming and streaming.",
+      "brand": "Samsung"
+    },
+    {
+      "id": "3",
+      "category": "technology",
+      "name": "Wireless Headphones",
+      "price": 1999,
+      "description": "Bluetooth 5.0, 30hr battery, active noise cancellation, IPX4 water resistant.",
+      "brand": "Sony"
+    },
+    {
+      "id": "10",
+      "category": "cosmetic",
+      "name": "Sunscreen SPF 50",
+      "price": 399,
+      "description": "Broad spectrum UVA/UVB protection, non-greasy, 50ml pump bottle.",
+      "brand": "Neutrogena"
+    },
+    {
+      "id": "11",
+      "category": "cosmetic",
+      "name": "Kajal Waterproof",
+      "price": 250,
+      "description": "Smudge-proof kajal pencil, 1g, 12-hour stay, easy glide formula.",
+      "brand": "Lakme"
+    },
+    {
+      "id": "10",
+      "category": "cosmetic",
+      "name": "Sunscreen SPF 50",
+      "price": 399,
+      "description": "Broad spectrum UVA/UVB protection, non-greasy, 50ml pump bottle.",
+      "brand": "Neutrogena"
+    },
+    {
+      "id": "9",
+      "category": "cosmetic",
+      "name": "Lipstick Matte",
+      "price": 450,
+      "description": "Long-lasting matte lipstick, 4.2g, 12-hour wear, available in 10 shades.",
+      "brand": "Maybelline"
+    },
+    {
+      "id": "10",
+      "category": "cosmetic",
+      "name": "Sunscreen SPF 50",
+      "price": 399,
+      "description": "Broad spectrum UVA/UVB protection, non-greasy, 50ml pump bottle.",
+      "brand": "Neutrogena"
+    },
+    {
+      "id": "11",
+      "category": "cosmetic",
+      "name": "Kajal Waterproof",
+      "price": 250,
+      "description": "Smudge-proof kajal pencil, 1g, 12-hour stay, easy glide formula.",
+      "brand": "Lakme"
+    },
+    {
+      "id": "10",
+      "category": "cosmetic",
+      "name": "Sunscreen SPF 50",
+      "price": 399,
+      "description": "Broad spectrum UVA/UVB protection, non-greasy, 50ml pump bottle.",
+      "brand": "Neutrogena"
+    },
+    {
+      "id": "9",
+      "category": "cosmetic",
+      "name": "Lipstick Matte",
+      "price": 450,
+      "description": "Long-lasting matte lipstick, 4.2g, 12-hour wear, available in 10 shades.",
+      "brand": "Maybelline"
+    },
+    {
+      "id": "11",
+      "category": "cosmetic",
+      "name": "Kajal Waterproof",
+      "price": 250,
+      "description": "Smudge-proof kajal pencil, 1g, 12-hour stay, easy glide formula.",
+      "brand": "Lakme"
+    },
+    {
+      "id": "10",
+      "category": "cosmetic",
+      "name": "Sunscreen SPF 50",
+      "price": 399,
+      "description": "Broad spectrum UVA/UVB protection, non-greasy, 50ml pump bottle.",
+      "brand": "Neutrogena"
+    },
+    {
+      "id": "10",
+      "category": "cosmetic",
+      "name": "Sunscreen SPF 50",
+      "price": 399,
+      "description": "Broad spectrum UVA/UVB protection, non-greasy, 50ml pump bottle.",
+      "brand": "Neutrogena"
+    }
+  ]
 
-  GetData(){
-    return  this.http.get<Product[]>(this.apiURL).pipe(catchError(this.handelerror))
-  }
+  // apiURL='http://localhost:3000/products'
 
-   AddData(item:Product){
-  return this.http.post(this.apiURL,item)
-   }
+  // GetData(){
+  //   return  this.http.get<Product[]>('assets/db.json').pipe(catchError(this.handelerror))
+  // }
+
+  //  AddData(item:Product){
+  // return this.http.post('assets/db.json',item)
+  //  }
   cartItem:Product[]=[]
   private productCartlist= new BehaviorSubject<Product[]>([])
   $ProductList= this.productCartlist.asObservable()

@@ -17,7 +17,7 @@ export class ListComponent {
 
 
 constructor(private service:ServiceService){}
-productList:Product[]=[]
+  productList: Product[] = [];
 dupproductList:Product[]=[]
  features = [
     {
@@ -66,10 +66,12 @@ ngOnInit(){
 // })
 // }
   loadProducts() {
-    this.service.GetData().subscribe(res => {
-      this.productList = res;
-      this.groupByCategory(res);
-    });
+ 
+    this.productList = this.service.products ?? [];
+;
+      console.log(this.productList)
+      this.groupByCategory( this.productList );
+ 
   }
  applyFilters() {
     combineLatest([
@@ -111,9 +113,7 @@ ngOnInit(){
   }
 
 addProduct(item:Product){
-  this.service.AddData(item).subscribe(()=>{
 
-  })
   this.service.CartList(item)
 }
  selectCategory(cat: any) {
